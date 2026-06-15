@@ -10,9 +10,14 @@ const { Server }       = require('socket.io');
 const { GameEngine }   = require('./gameEngine');
 
 const PORT = process.env.PORT || 3000;
+
+// Create HTTP server with a proper fallback response handler
 const httpServer = createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
   res.end("King's Blood Game Server is running!");
+});
+
+// Initialize Socket.IO attached to the server
 const io = new Server(httpServer, {
   cors: { origin: '*', methods: ['GET','POST'] },
   pingTimeout: 20000,
@@ -280,6 +285,7 @@ io.on('connection', (socket) => {
   });
 });
 
+// Start listening for traffic
 httpServer.listen(PORT, '0.0.0.0', () => {
   console.log(`King's Blood server on :${PORT}`);
   });
