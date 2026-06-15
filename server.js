@@ -278,4 +278,6 @@ io.on('connection', (socket) => {
   });
 });
 
-httpServer.listen(PORT, () => console.log(`King's Blood server on :${PORT}`));
+httpServer.listen(PORT, '0.0.0.0', () => {
+  console.log(`King's Blood server on :${PORT}`);
+  });
