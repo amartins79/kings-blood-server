@@ -10,7 +10,9 @@ const { Server }       = require('socket.io');
 const { GameEngine }   = require('./gameEngine');
 
 const PORT = process.env.PORT || 3000;
-const httpServer = createServer();
+const httpServer = createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end("King's Blood Game Server is running!");
 const io = new Server(httpServer, {
   cors: { origin: '*', methods: ['GET','POST'] },
   pingTimeout: 20000,
